@@ -58,8 +58,8 @@ app.post("/add-user", async (req, res) => {
 
 app.delete("/delete-user/:id", async (req, res) => {
   try {
-    const { id } = req.query;
-    await User.findByIdAndDelete(id);
+    const { id } = req.params;
+    await User.deleteOne({uid: id});
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ message: error.message });
